@@ -1,35 +1,49 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [FormsModule, RouterTestingModule],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'test_app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('test_app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('test_app app is running!');
+  });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should filter images by ID', () => {
+    component.idFilter = '10';
+    component.applyFilters();
+    expect(component.filteredImages.length).toBeGreaterThan(0);
+    expect(component.filteredImages.every((image) => image.id.toString().includes(component.idFilter))).toBeTrue();
+  });
+
+  it('should filter images by text', () => {
+    component.textFilter = 'Vivamus';
+    component.applyFilters();
+    expect(component.filteredImages.length).toBeGreaterThan(0);
+    expect(component.filteredImages.every((image) => image.text.toLowerCase().includes(component.textFilter.toLowerCase()))).toBeTrue();
+  });
+
+  it('should filter images by ID and text', () => {
+    component.idFilter = '16';
+    component.textFilter = 'Vivamus';
+    component.applyFilters();
+    expect(component.filteredImages.length).toBeGreaterThan(0);
+    expect(component.filteredImages.every((image) => image.id.toString().includes(component.idFilter))).toBeTrue();
+    expect(component.filteredImages.every((image) => image.text.toLowerCase().includes(component.textFilter.toLowerCase()))).toBeTrue();
   });
 });

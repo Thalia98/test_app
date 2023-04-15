@@ -1,0 +1,153 @@
+// Variables
+$primary-color: #007bff;
+$text-color: #333;
+$font-family: Arial,
+sans-serif;
+
+body {
+  p {
+    color: $text-color;
+  }
+}
+
+// Title style
+
+.header-title {
+  font-size: 36px;
+  color: $text-color;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 80%;
+    height: 3px;
+    background-color: #007bff;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 2px;
+  }
+}
+
+// Inputs container style
+.inputs-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  flex-wrap: wrap;
+
+  // Inputs style
+  input {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: $text-color;
+    background-color: #f4f4f4;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+
+  // Button style
+  button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #fff;
+    background-color: $primary-color;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0069d9;
+    }
+
+    &:active {
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+// Container centers style
+.container-center {
+  text-align: center;
+}
+
+// List style
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+
+  // List item style
+  .list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+
+    // Image style
+    .image-container {
+      width: 5rem;
+      height: 5rem;
+      overflow: hidden;
+      border-radius: 50%;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    // Text style
+    .text-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      // Title style
+      .title {
+        font-family: $font-family;
+        font-size: 1.25rem;
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+@media (width <=650px) {
+  button {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+@media (width <=505px) {
+  input {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
